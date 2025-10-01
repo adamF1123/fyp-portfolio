@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>fyp • Portfolio</title>
-  <meta name="description" content="Portfolio for REKEK e‑commerce FYP, Android, Java + MySQL, and data analysis projects." />
-  <meta property="og:title" content="fyp • Portfolio" />
-  <meta property="og:description" content="REKEK e‑commerce FYP, Android, Java + MySQL, and data analysis projects." />
+  <title>FYP • Portfolio</title>
+  <meta name="description" content="Portfolio for REKEK e-commerce FYP (PHP + MySQL) and sales dashboard." />
+  <meta property="og:title" content="FYP • Portfolio" />
+  <meta property="og:description" content="REKEK e-commerce FYP (PHP + MySQL) and sales dashboard." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b0c10; /* deep slate */
@@ -50,14 +51,7 @@
     .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:#0b0e14}
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .col-12{grid-column:span 12}
-    .col-6{grid-column:span 6}
-    .col-4{grid-column:span 4}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}.col-6,.col-4{grid-column:span 12}}
-
     .proj{display:flex;flex-direction:column;gap:10px}
-    .proj h3{margin:0;font-size:18px}
     .meta{display:flex;gap:10px;flex-wrap:wrap}
     .meta span{font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
     .cta{display:flex;gap:10px;margin-top:6px}
@@ -68,6 +62,43 @@
 
     footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;color:var(--muted)}
     .pill{display:inline-block;border:1px dashed var(--border);padding:6px 10px;border-radius:999px}
+
+    /* ---------- Mobile-friendly tweaks ---------- */
+    .wrap { padding: 20px 16px 64px; }
+    nav { flex-wrap: wrap; gap: 10px; }
+    .cta { flex-wrap: wrap; row-gap: 10px; }
+
+    /* Chart container for responsive height */
+    .chart-wrap { width: 100%; height: 280px; }
+    #salesChart { width: 100% !important; height: 100% !important; display: block; }
+
+    /* Tablet */
+    @media (max-width: 900px){
+      .hero { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .card { padding: 18px; }
+    }
+    /* Phones */
+    @media (max-width: 600px){
+      header { padding: 0 12px; }
+      .brand h1 { font-size: 14px; }
+      nav a { padding: 8px 10px; }
+      h2 { font-size: 20px; }
+      .kpi b { font-size: 20px; }
+      .badge { padding: 5px 9px; }
+      .chart-wrap { height: 220px; }
+      .btn { padding: 12px 14px; } /* bigger tap targets */
+    }
+    /* Extra small */
+    @media (max-width: 380px){
+      .wrap { padding: 16px 12px 56px; }
+      .card { padding: 14px; }
+      nav { gap: 6px; }
+      nav a { padding: 6px 8px; }
+      h2 { font-size: 18px; }
+      .kpis { grid-template-columns: 1fr; }
+      .chart-wrap { height: 200px; }
+    }
   </style>
 </head>
 <body>
@@ -89,7 +120,7 @@
       <div class="card">
         <h2>Hi, I’m <span style="color:var(--brand)">Adam Harith</span> — Diploma student</h2>
         <p>
-          I build “REKEK” e‑commerce site (PHP + MySQL). I’m looking for a
+          I build “REKEK” e-commerce site (PHP + MySQL). I’m looking for a
           <b>Data Analyst internship</b>. I love turning messy data into neat dashboards and
           improving UX with simple, clean code.
         </p>
@@ -97,7 +128,6 @@
           <span class="badge">PHP · MySQL · XAMPP</span>
           <span class="badge">HTML · CSS · JavaScript</span>
           <span class="badge">Java · Swing</span>
-          
           <span class="badge">Excel · CSV · Charts</span>
         </div>
         <div class="kpis">
@@ -119,10 +149,11 @@
           <a class="btn" href="#contact">Contact Me</a>
         </div>
       </div>
+
       <div class="card">
         <h2>Quick Intro</h2>
         <ul>
-          <li>Passionate about e‑commerce flows (cart → checkout → shipment → returns).</li>
+          <li>Passionate about e-commerce flows (cart → checkout → shipment → returns).</li>
           <li>Comfortable designing DB schemas and SQL joins with constraints.</li>
           <li>Learning data analysis: cleaning CSVs, EDA, visualizing trends.</li>
         </ul>
@@ -140,9 +171,9 @@ LIMIT 10;</pre>
 
     <!-- REKEK (Single Project) -->
     <section id="rekek" class="card" style="margin-top:28px">
-      <h2>REKEK – E‑commerce (Final Year Project)</h2>
+      <h2>REKEK – E-commerce (Final Year Project)</h2>
       <p>
-        A simple but complete badminton e‑commerce website built with <b>PHP + MySQL</b>. It keeps the
+        A simple but complete badminton e-commerce website built with <b>PHP + MySQL</b>. It keeps the
         original design and focuses on clean flows: browse products → add to cart → checkout → shipment
         tracking → returns & refunds. Admin pages include basic dashboards and product management.
       </p>
@@ -173,7 +204,9 @@ LIMIT 10;</pre>
 
       <h3 style="margin-top:18px">Simple Sales Chart (Demo)</h3>
       <p class="muted">Example chart with sample numbers to show monthly sales trend.</p>
-      <canvas id="salesChart" height="120" style="background:#0b0e14;border:1px solid var(--border);border-radius:12px;padding:8px"></canvas>
+      <div class="chart-wrap" style="background:#0b0e14;border:1px solid var(--border);border-radius:12px;padding:8px">
+        <canvas id="salesChart"></canvas>
+      </div>
 
       <div class="code" aria-label="Sample SQL" style="margin-top:16px">
 <pre>-- Top sellers (simple example)
@@ -195,7 +228,7 @@ LIMIT 10;</pre>
         <li>GitHub: <a href="https://github.com/adamF1123" target="_blank" rel="noopener">github.com/adamF1123</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/in/mohd-adam-bba8b0339" target="_blank" rel="noopener">linkedin.com/in/mohd-adam-bba8b0339</a></li>
       </ul>
-      <p class="pill">Tip: replace the placeholders ↑ then push to GitHub Pages.</p>
+      <p class="pill">Tip: keep filenames & paths exactly the same to avoid 404s.</p>
     </section>
 
     <footer>
@@ -209,9 +242,10 @@ LIMIT 10;</pre>
     // tiny enhancement: current year
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Simple, not-advanced chart with sample data
+    // Simple, not-advanced chart with sample data (responsive)
     (function(){
       var ctx = document.getElementById('salesChart');
       if(!ctx) return;
@@ -226,6 +260,7 @@ LIMIT 10;</pre>
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false, // lets chart fill the wrapper height on phones
           plugins: { legend: { display: true } },
           scales: { y: { beginAtZero: true } }
         }
@@ -234,8 +269,3 @@ LIMIT 10;</pre>
   </script>
 </body>
 </html>
-
-
-
-
-
