@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fyp • Portfolio</title>
+  <meta name="description" content="Portfolio for REKEK e‑commerce FYP, Android, Java + MySQL, and data analysis projects." />
+  <meta property="og:title" content="fyp • Portfolio" />
+  <meta property="og:description" content="REKEK e‑commerce FYP, Android, Java + MySQL, and data analysis projects." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10; /* deep slate */
+      --panel: #111218;
+      --text: #f5f7fa;
+      --muted: #b4bdc6;
+      --brand: #22c55e; /* green */
+      --brand-weak: rgba(34,197,94,.18);
+      --card: #0e1116;
+      --border: #1f2430;
+      --code: #0b1220;
+      --link: #7dd3fc;
+      --shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+    header{display:flex;align-items:center;gap:18px;justify-content:space-between;position:sticky;top:0;background:linear-gradient(180deg,var(--bg),rgba(11,12,16,.85));backdrop-filter:saturate(150%) blur(6px);border-bottom:1px solid var(--border);z-index:20}
+    .brand{display:flex;align-items:center;gap:12px;padding:12px 0}
+    .logo{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--brand-weak),transparent);border:1px solid var(--border);box-shadow:var(--shadow)}
+    .logo::after{content:"RE";font-weight:800;color:var(--brand)}
+    .brand h1{font-size:16px;margin:0;letter-spacing:.4px;font-weight:700}
+    nav{display:flex;gap:16px}
+    nav a{padding:10px 12px;border-radius:10px;border:1px solid transparent}
+    nav a:hover{background:var(--panel);border-color:var(--border)}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;margin-top:24px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .kpi{padding:16px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,rgba(34,197,94,.06),transparent)}
+    .kpi b{display:block;font-size:22px;margin-top:6px}
+
+    h2{font-size:22px;margin:18px 0 6px}
+    p{color:var(--muted);line-height:1.6}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:#0b0e14}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .col-12{grid-column:span 12}
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    @media (max-width: 900px){.hero{grid-template-columns:1fr}.col-6,.col-4{grid-column:span 12}}
+
+    .proj{display:flex;flex-direction:column;gap:10px}
+    .proj h3{margin:0;font-size:18px}
+    .meta{display:flex;gap:10px;flex-wrap:wrap}
+    .meta span{font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+    .cta{display:flex;gap:10px;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel)}
+    .btn.primary{background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(34,197,94,.08));border-color:#214d34}
+
+    .code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:var(--code);border:1px solid var(--border);border-radius:12px;padding:14px;overflow:auto}
+
+    footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;color:var(--muted)}
+    .pill{display:inline-block;border:1px dashed var(--border);padding:6px 10px;border-radius:999px}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>fyp • Portfolio</h1>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#rekek">REKEK</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="card">
+        <h2>Hi, I’m <span style="color:var(--brand)">Adam Harith</span> — Diploma student</h2>
+        <p>
+          I build practical apps and the “REKEK” e‑commerce site (PHP + MySQL). I’m looking for a
+          <b>Data Analyst internship</b>. I love turning messy data into neat dashboards and
+          improving UX with simple, clean code.
+        </p>
+        <div class="badges">
+          <span class="badge">PHP · MySQL · XAMPP</span>
+          <span class="badge">HTML · CSS · JavaScript</span>
+          <span class="badge">Java · Swing</span>
+          <span class="badge">Android (Room · RecyclerView)</span>
+          <span class="badge">Excel · CSV · Charts</span>
+        </div>
+        <div class="kpis">
+          <div class="kpi">
+            <small>REKEK Products</small>
+            <b>200+</b>
+          </div>
+          <div class="kpi">
+            <small>Modules Built</small>
+            <b>10+</b>
+          </div>
+          <div class="kpi">
+            <small>Bug Fix PRs</small>
+            <b>50+</b>
+          </div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Quick Intro</h2>
+        <ul>
+          <li>Passionate about e‑commerce flows (cart → checkout → shipment → returns).</li>
+          <li>Comfortable designing DB schemas and SQL joins with constraints.</li>
+          
+          <li>Learning data analysis: cleaning CSVs, EDA, visualizing trends.</li>
+        </ul>
+        <div class="code" aria-label="Sample SQL">
+<pre>-- Example: top sellers query
+SELECT p.id, p.name, SUM(oi.qty) AS sold_qty
+FROM order_items oi
+JOIN products p ON p.id = oi.product_id
+GROUP BY p.id, p.name
+ORDER BY sold_qty DESC
+LIMIT 10;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- REKEK (Single Project) -->
+    <section id="rekek" class="card" style="margin-top:28px">
+      <h2>REKEK – E‑commerce (Final Year Project)</h2>
+      <p>
+        A simple but complete badminton e‑commerce website built with <b>PHP + MySQL</b>. It keeps the
+        original design and focuses on clean flows: browse products → add to cart → checkout → shipment
+        tracking → returns & refunds. Admin pages include basic dashboards and product management.
+      </p>
+
+      <h3 style="margin-top:12px">Main Modules</h3>
+      <ul>
+        <li>Product catalogue with categories (rackets, shoes, shirts, shuttlecocks).</li>
+        <li>Cart & Checkout (quantity update, remove, total calculation).</li>
+        <li>Orders & Shipments (simple status: pending → shipped → delivered).</li>
+        <li>Returns/Refunds (user request + admin approve/reject + reply message).</li>
+        <li>Admin: add/edit products, see top sellers, basic KPIs.</li>
+      </ul>
+
+      <div class="badges" style="margin-top:10px">
+        <span class="badge">PHP</span>
+        <span class="badge">MySQL</span>
+        <span class="badge">HTML/CSS/JS</span>
+        <span class="badge">Bootstrap</span>
+      </div>
+
+      <div class="cta" style="margin-top:12px">
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Live (GitHub Pages)</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Source Code</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+
+      <h3 style="margin-top:18px">Simple Sales Chart (Demo)</h3>
+      <p class="muted">Example chart with sample numbers to show monthly sales trend.</p>
+      <canvas id="salesChart" height="120" style="background:#0b0e14;border:1px solid var(--border);border-radius:12px;padding:8px"></canvas>
+
+      <div class="code" aria-label="Sample SQL" style="margin-top:16px">
+<pre>-- Top sellers (simple example)
+SELECT p.id, p.name, SUM(oi.qty) AS sold_qty
+FROM order_items oi
+JOIN products p ON p.id = oi.product_id
+GROUP BY p.id, p.name
+ORDER BY sold_qty DESC
+LIMIT 10;</pre>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card" style="margin-top:28px">
+      <h2>Contact</h2>
+      <p>Open for internship opportunities in Malaysia. Reach me here:</p>
+      <ul>
+        <li>Email: <a href="mailto:mohamadadamharith05@gmail.com">mohamadadamharith05@gmail.com</a></li>
+        <li>GitHub: <a href="https://github.com/adamF1123" target="_blank" rel="noopener">github.com/adamF1123</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/mohd-adam-bba8b0339" target="_blank" rel="noopener">linkedin.com/in/mohd-adam-bba8b0339</a></li>
+      </ul>
+      <p class="pill">Tip: replace the placeholders ↑ then push to GitHub Pages.</p>
+    </section>
+
+    <footer>
+      <span>© <span id="y"></span> fyp</span>
+      <span>•</span>
+      <a href="#about">Back to top</a>
+    </footer>
+  </main>
+
+  <script>
+    // tiny enhancement: current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Simple, not-advanced chart with sample data
+    (function(){
+      var ctx = document.getElementById('salesChart');
+      if(!ctx) return;
+      var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+          datasets: [{
+            label: 'Monthly Sales (RM)',
+            data: [320, 410, 380, 460, 520, 490]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: true } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
