@@ -3,270 +3,935 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FYP • Portfolio</title>
-  <meta name="description" content="Portfolio for REKEK e-commerce FYP (PHP + MySQL) and sales dashboard." />
-  <meta property="og:title" content="FYP • Portfolio" />
-  <meta property="og:description" content="REKEK e-commerce FYP (PHP + MySQL) and sales dashboard." />
+  <title>Adam Harith | Data Analyst & Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Adam Harith - Data Analyst & Developer specializing in e-commerce solutions, data visualization, and web applications." />
+  <meta property="og:title" content="Adam Harith | Data Analyst & Developer Portfolio" />
+  <meta property="og:description" content="Portfolio of Adam Harith - Data Analyst & Developer specializing in e-commerce solutions, data visualization, and web applications." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg: #0b0c10; /* deep slate */
+      --bg: #0b0c10;
       --panel: #111218;
       --text: #f5f7fa;
       --muted: #b4bdc6;
-      --brand: #22c55e; /* green */
+      --brand: #22c55e;
       --brand-weak: rgba(34,197,94,.18);
       --card: #0e1116;
       --border: #1f2430;
       --code: #0b1220;
       --link: #7dd3fc;
       --shadow: 0 10px 30px rgba(0,0,0,.4);
+      --accent: #6366f1;
+      --gradient: linear-gradient(135deg, var(--brand), var(--accent));
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif}
-    a{color:var(--link);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
-    header{display:flex;align-items:center;gap:18px;justify-content:space-between;position:sticky;top:0;background:linear-gradient(180deg,var(--bg),rgba(11,12,16,.85));backdrop-filter:saturate(150%) blur(6px);border-bottom:1px solid var(--border);z-index:20}
-    .brand{display:flex;align-items:center;gap:12px;padding:12px 0}
-    .logo{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--brand-weak),transparent);border:1px solid var(--border);box-shadow:var(--shadow)}
-    .logo::after{content:"RE";font-weight:800;color:var(--brand)}
-    .brand h1{font-size:16px;margin:0;letter-spacing:.4px;font-weight:700}
-    nav{display:flex;gap:16px}
-    nav a{padding:10px 12px;border-radius:10px;border:1px solid transparent}
-    nav a:hover{background:var(--panel);border-color:var(--border)}
-
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;margin-top:24px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
-    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
-    .kpi{padding:16px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,rgba(34,197,94,.06),transparent)}
-    .kpi b{display:block;font-size:22px;margin-top:6px}
-
-    h2{font-size:22px;margin:18px 0 6px}
-    p{color:var(--muted);line-height:1.6}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:#0b0e14}
-
-    .proj{display:flex;flex-direction:column;gap:10px}
-    .meta{display:flex;gap:10px;flex-wrap:wrap}
-    .meta span{font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
-    .cta{display:flex;gap:10px;margin-top:6px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel)}
-    .btn.primary{background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(34,197,94,.08));border-color:#214d34}
-
-    .code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:var(--code);border:1px solid var(--border);border-radius:12px;padding:14px;overflow:auto}
-
-    footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;color:var(--muted)}
-    .pill{display:inline-block;border:1px dashed var(--border);padding:6px 10px;border-radius:999px}
-
-    /* ---------- Mobile-friendly tweaks ---------- */
-    .wrap { padding: 20px 16px 64px; }
-    nav { flex-wrap: wrap; gap: 10px; }
-    .cta { flex-wrap: wrap; row-gap: 10px; }
-
-    /* Chart container for responsive height */
-    .chart-wrap { width: 100%; height: 280px; }
-    #salesChart { width: 100% !important; height: 100% !important; display: block; }
-
-    /* Tablet */
-    @media (max-width: 900px){
-      .hero { grid-template-columns: 1fr; }
-      .kpis { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .card { padding: 18px; }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    /* Phones */
-    @media (max-width: 600px){
-      header { padding: 0 12px; }
-      .brand h1 { font-size: 14px; }
-      nav a { padding: 8px 10px; }
-      h2 { font-size: 20px; }
-      .kpi b { font-size: 20px; }
-      .badge { padding: 5px 9px; }
-      .chart-wrap { height: 220px; }
-      .btn { padding: 12px 14px; } /* bigger tap targets */
+    
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    /* Extra small */
-    @media (max-width: 380px){
-      .wrap { padding: 16px 12px 56px; }
-      .card { padding: 14px; }
-      nav { gap: 6px; }
-      nav a { padding: 6px 8px; }
-      h2 { font-size: 18px; }
-      .kpis { grid-template-columns: 1fr; }
-      .chart-wrap { height: 200px; }
+    
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    a:hover {
+      color: var(--brand);
+    }
+    
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+    
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, var(--bg), rgba(11,12,16,.95));
+      backdrop-filter: saturate(150%) blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 12px 0;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--gradient);
+      box-shadow: var(--shadow);
+      font-weight: 800;
+      color: white;
+    }
+    
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: .4px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    nav {
+      display: flex;
+      gap: 16px;
+    }
+    
+    nav a {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-weight: 500;
+    }
+    
+    nav a:hover {
+      background: var(--panel);
+      border-color: var(--border);
+      text-decoration: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+    
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    
+    .kpi {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(34,197,94,.08), transparent);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .kpi:hover {
+      background: linear-gradient(180deg, rgba(34,197,94,.12), transparent);
+      border-color: rgba(34,197,94,.3);
+    }
+    
+    .kpi b {
+      display: block;
+      font-size: 24px;
+      margin-top: 6px;
+      color: var(--brand);
+    }
+    
+    h2 {
+      font-size: 24px;
+      margin: 18px 0 12px;
+      font-weight: 700;
+    }
+    
+    h3 {
+      font-size: 20px;
+      margin: 16px 0 8px;
+      font-weight: 600;
+    }
+    
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    
+    .badge {
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #0b0e14;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .badge:hover {
+      background: var(--brand-weak);
+      border-color: var(--brand);
+    }
+    
+    .proj {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .meta span {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    
+    .cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: var(--brand-weak);
+      border-color: var(--brand);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(34,197,94,.15), rgba(34,197,94,.08));
+      border-color: #214d34;
+    }
+    
+    .btn.primary:hover {
+      background: linear-gradient(180deg, rgba(34,197,94,.25), rgba(34,197,94,.15));
+    }
+    
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: var(--code);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      overflow: auto;
+      margin: 16px 0;
+    }
+    
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .skill-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--brand);
+    }
+    
+    .skill-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: var(--brand);
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      border-color: var(--brand);
+    }
+    
+    .project-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .project-description {
+      color: var(--muted);
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+    
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--brand);
+    }
+    
+    .contact-icon {
+      font-size: 24px;
+      color: var(--brand);
+      width: 40px;
+      text-align: center;
+    }
+    
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--brand-weak);
+      border-color: var(--brand);
+      transform: translateY(-3px);
+    }
+    
+    .pill {
+      display: inline-block;
+      border: 1px dashed var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-top: 16px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    /* Chart container */
+    .chart-wrap {
+      width: 100%;
+      height: 280px;
+      background: #0b0e14;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    
+    #salesChart {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      
+      .kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      h2 {
+        font-size: 22px;
+      }
+      
+      .kpi b {
+        font-size: 20px;
+      }
+      
+      .btn {
+        padding: 14px 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .chart-wrap {
+        height: 220px;
+      }
+      
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 16px 12px 56px;
+      }
+      
+      .card {
+        padding: 16px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+      
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+      
+      .chart-wrap {
+        height: 200px;
+      }
+      
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
   <header class="wrap">
     <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <h1>FYP • Portfolio</h1>
+      <div class="logo" aria-hidden="true">AH</div>
+      <h1>Adam Harith</h1>
     </div>
     <nav>
       <a href="#about">About</a>
-      <a href="#rekek">REKEK</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main class="wrap">
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section class="hero" id="about">
-      <div class="card">
-        <h2>Hi, I’m <span style="color:var(--brand)">Adam Harith</span> — Diploma student</h2>
-        <p>
-          I build “REKEK” e-commerce site (PHP + MySQL). I’m looking for a
-          <b>Data Analyst internship</b>. I love turning messy data into neat dashboards and
-          improving UX with simple, clean code.
+      <div class="card fade-in">
+        <h2>Hi, I'm <span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Adam Harith</span></h2>
+        <p style="font-size: 18px; margin-bottom: 20px;">
+          Data Analyst & Developer passionate about transforming data into actionable insights and building efficient web applications.
         </p>
+        <p>
+          I'm a diploma student specializing in data analysis and full-stack development. I recently built "REKEK" - a complete e-commerce platform with PHP and MySQL. Currently seeking a <b>Data Analyst internship</b> where I can apply my skills in data visualization, database management, and problem-solving.
+        </p>
+        
         <div class="badges">
-          <span class="badge">PHP · MySQL · XAMPP</span>
-          <span class="badge">HTML · CSS · JavaScript</span>
-          <span class="badge">Java · Swing</span>
-          <span class="badge">Excel · CSV · Charts</span>
+          <span class="badge"><i class="fas fa-database"></i> PHP · MySQL</span>
+          <span class="badge"><i class="fas fa-chart-line"></i> Data Analysis</span>
+          <span class="badge"><i class="fas fa-code"></i> HTML · CSS · JavaScript</span>
+          <span class="badge"><i class="fas fa-cogs"></i> Java · Power BI</span>
         </div>
+        
         <div class="kpis">
           <div class="kpi">
-            <small>REKEK Products</small>
+            <small>Projects Completed</small>
+            <b>5+</b>
+          </div>
+          <div class="kpi">
+            <small>Database Tables</small>
+            <b>15+</b>
+          </div>
+          <div class="kpi">
+            <small>Code Commits</small>
             <b>200+</b>
           </div>
-          <div class="kpi">
-            <small>Modules Built</small>
-            <b>10+</b>
-          </div>
-          <div class="kpi">
-            <small>Bug Fix PRs</small>
-            <b>50+</b>
-          </div>
         </div>
+        
         <div class="cta">
-          <a class="btn primary" href="CV.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
-          <a class="btn" href="#contact">Contact Me</a>
+          <a class="btn primary" href="CV.pdf" target="_blank" rel="noopener">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+          <a class="btn" href="#projects">
+            <i class="fas fa-eye"></i> View Projects
+          </a>
+          <a class="btn" href="#contact">
+            <i class="fas fa-envelope"></i> Contact Me
+          </a>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Quick Intro</h2>
-        <ul>
-          <li>Passionate about e-commerce flows (cart → checkout → shipment → returns).</li>
-          <li>Comfortable designing DB schemas and SQL joins with constraints.</li>
-          <li>Learning data analysis: cleaning CSVs, EDA, visualizing trends.</li>
+      <div class="card fade-in">
+        <h2>Technical Focus</h2>
+        <ul style="color: var(--muted); margin-bottom: 20px;">
+          <li>E-commerce systems: cart → checkout → shipment → returns</li>
+          <li>Database design: schemas, constraints, and optimized queries</li>
+          <li>Data analysis: cleaning datasets, EDA, and visualizing trends</li>
+          <li>Responsive web design and user experience optimization</li>
         </ul>
+        
         <div class="code" aria-label="Sample SQL">
-<pre>-- Example: top sellers query
-SELECT p.id, p.name, SUM(oi.qty) AS sold_qty
-FROM order_items oi
-JOIN products p ON p.id = oi.product_id
-GROUP BY p.id, p.name
-ORDER BY sold_qty DESC
-LIMIT 10;</pre>
+<pre>-- Example: Customer segmentation query
+SELECT 
+  c.id,
+  c.name,
+  COUNT(o.id) AS order_count,
+  SUM(o.total) AS total_spent,
+  CASE 
+    WHEN SUM(o.total) > 500 THEN 'VIP'
+    WHEN SUM(o.total) > 200 THEN 'Regular'
+    ELSE 'New'
+  END AS customer_segment
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.name
+ORDER BY total_spent DESC;</pre>
         </div>
       </div>
     </section>
 
-    <!-- REKEK (Single Project) -->
-    <section id="rekek" class="card" style="margin-top:28px">
-      <h2>REKEK – E-commerce (Final Year Project)</h2>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="card" style="margin-top: 40px;">
+      <h2>Technical Skills</h2>
+      <p>Here are the technologies and tools I work with:</p>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-php"></i></div>
+          <div>PHP</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div>MySQL</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <div>JavaScript</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <div>HTML5</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+          <div>CSS3</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-java"></i></div>
+          <div>Java</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+          <div>Power BI</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+          <div>Excel</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="card" style="margin-top: 40px;">
+      <h2>Featured Projects</h2>
+      <p>Here are some of my key projects that demonstrate my technical abilities:</p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3 class="project-title">REKEK E-commerce</h3>
+          <p class="project-description">A complete badminton e-commerce platform with product catalog, shopping cart, checkout, order management, and admin dashboard.</p>
+          <div class="badges">
+            <span class="badge">PHP</span>
+            <span class="badge">MySQL</span>
+            <span class="badge">Bootstrap</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://adamf1123.github.io/fyp-portfolio/" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a class="btn" href="https://github.com/adamF1123/fyp-portfolio" target="_blank">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">Sales Dashboard</h3>
+          <p class="project-description">Interactive Power BI dashboard analyzing sales data, customer behavior, and product performance with actionable insights.</p>
+          <div class="badges">
+            <span class="badge">Power BI</span>
+            <span class="badge">Data Visualization</span>
+            <span class="badge">Excel</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://adamf1123.github.io/fyp-portfolio/REKEK_Sales.pdf" target="_blank">
+              <i class="fas fa-file-pdf"></i> View PDF
+            </a>
+            <a class="btn" href="https://adamf1123.github.io/fyp-portfolio/REKEK_Sales.pbix" download>
+              <i class="fas fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">Inventory Management</h3>
+          <p class="project-description">Java Swing application for tracking inventory, managing stock levels, and generating reports with a user-friendly interface.</p>
+          <div class="badges">
+            <span class="badge">Java</span>
+            <span class="badge">Swing</span>
+            <span class="badge">MySQL</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="#">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REKEK PROJECT DETAILS -->
+    <section class="card" style="margin-top: 40px;">
+      <h2>REKEK – E-commerce Platform (Final Year Project)</h2>
       <p>
-        A simple but complete badminton e-commerce website built with <b>PHP + MySQL</b>. It keeps the
-        original design and focuses on clean flows: browse products → add to cart → checkout → shipment
-        tracking → returns & refunds. Admin pages include basic dashboards and product management.
+        A comprehensive badminton e-commerce website built with <b>PHP + MySQL</b> that implements complete e-commerce workflows from product browsing to returns management.
       </p>
 
-      <h3 style="margin-top:12px">Main Modules</h3>
-      <ul>
-        <li>Product catalogue with categories (rackets, shoes, shirts, shuttlecocks).</li>
-        <li>Cart & Checkout (quantity update, remove, total calculation).</li>
-        <li>Orders & Shipments (simple status: pending → shipped → delivered).</li>
-        <li>Returns/Refunds (user request + admin approve/reject + reply message).</li>
-        <li>Admin: add/edit products, see top sellers, basic KPIs.</li>
+      <h3>Key Features</h3>
+      <div class="badges">
+        <span class="badge"><i class="fas fa-shopping-cart"></i> Product Catalog</span>
+        <span class="badge"><i class="fas fa-credit-card"></i> Secure Checkout</span>
+        <span class="badge"><i class="fas fa-truck"></i> Order Tracking</span>
+        <span class="badge"><i class="fas fa-undo"></i> Returns Management</span>
+        <span class="badge"><i class="fas fa-chart-pie"></i> Admin Dashboard</span>
+      </div>
+
+      <h3 style="margin-top: 24px;">Technical Implementation</h3>
+      <ul style="color: var(--muted); margin-bottom: 20px;">
+        <li>Responsive design with Bootstrap for mobile compatibility</li>
+        <li>User authentication and session management</li>
+        <li>Database design with proper relationships and constraints</li>
+        <li>Admin panel for product and order management</li>
+        <li>Dynamic product filtering and search functionality</li>
       </ul>
 
-      <div class="badges" style="margin-top:10px">
-        <span class="badge">PHP</span>
-        <span class="badge">MySQL</span>
-        <span class="badge">HTML/CSS/JS</span>
-        <span class="badge">Bootstrap</span>
+      <div class="cta">
+        <a class="btn primary" href="https://adamf1123.github.io/fyp-portfolio/" target="_blank">
+          <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+        <a class="btn" href="https://github.com/adamF1123/fyp-portfolio" target="_blank">
+          <i class="fab fa-github"></i> Source Code
+        </a>
+        <a class="btn" href="CV.pdf" target="_blank">
+          <i class="fas fa-file-pdf"></i> Resume
+        </a>
       </div>
 
-      <div class="cta" style="margin-top:12px">
-        <a class="btn primary" href="https://adamf1123.github.io/fyp-portfolio/" target="_blank" rel="noopener">Live (GitHub Pages)</a>
-        <a class="btn" href="https://github.com/adamF1123/fyp-portfolio" target="_blank" rel="noopener">Source Code</a>
-        <a class="btn" href="CV.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-        <a class="btn" href="https://adamf1123.github.io/fyp-portfolio/REKEK_Sales.pdf" target="_blank" rel="noopener">Dashboard (PDF)</a>
-        <a class="btn" href="https://adamf1123.github.io/fyp-portfolio/REKEK_Sales.pbix" download>Download Power BI (.pbix)</a>
-      </div>
-
-      <h3 style="margin-top:18px">Simple Sales Chart (Demo)</h3>
-      <p class="muted">Example chart with sample numbers to show monthly sales trend.</p>
-      <div class="chart-wrap" style="background:#0b0e14;border:1px solid var(--border);border-radius:12px;padding:8px">
+      <h3 style="margin-top: 28px;">Sales Analytics Demo</h3>
+      <p>Interactive chart showing sample sales data with monthly trends and performance metrics.</p>
+      
+      <div class="chart-wrap">
         <canvas id="salesChart"></canvas>
       </div>
 
-      <div class="code" aria-label="Sample SQL" style="margin-top:16px">
-<pre>-- Top sellers (simple example)
-SELECT p.id, p.name, SUM(oi.qty) AS sold_qty
+      <div class="code" aria-label="Sample SQL">
+<pre>-- Product performance analysis
+SELECT 
+  p.name,
+  p.category,
+  SUM(oi.quantity) as units_sold,
+  SUM(oi.quantity * oi.unit_price) as revenue,
+  ROUND(SUM(oi.quantity * oi.unit_price) / SUM(SUM(oi.quantity * oi.unit_price)) OVER() * 100, 2) as revenue_percentage
 FROM order_items oi
 JOIN products p ON p.id = oi.product_id
-GROUP BY p.id, p.name
-ORDER BY sold_qty DESC
+GROUP BY p.id, p.name, p.category
+ORDER BY revenue DESC
 LIMIT 10;</pre>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="card" style="margin-top:28px">
-      <h2>Contact</h2>
-      <p>Open for internship opportunities in Malaysia. Reach me here:</p>
-      <ul>
-        <li>Email: <a href="mailto:mohamadadamharith05@gmail.com">mohamadadamharith05@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/adamF1123" target="_blank" rel="noopener">github.com/adamF1123</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/mohd-adam-bba8b0339" target="_blank" rel="noopener">linkedin.com/in/mohd-adam-bba8b0339</a></li>
-      </ul>
-      <p class="pill">Tip: keep filenames & paths exactly the same to avoid 404s.</p>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="card" style="margin-top: 40px;">
+      <h2>Get In Touch</h2>
+      <p>I'm currently seeking internship opportunities in Malaysia. Feel free to reach out if you'd like to discuss potential collaborations or opportunities.</p>
+      
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:mohamadadamharith05@gmail.com">mohamadadamharith05@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div>
+            <h3>GitHub</h3>
+            <a href="https://github.com/adamF1123" target="_blank">github.com/adamF1123</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <div>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/mohd-adam-bba8b0339" target="_blank">linkedin.com/in/mohd-adam</a>
+          </div>
+        </div>
+      </div>
+      
+      <p class="pill">
+        <i class="fas fa-lightbulb"></i> Always open to discussing data analysis projects and web development opportunities.
+      </p>
     </section>
 
     <footer>
-      <span>© <span id="y"></span> fyp</span>
-      <span>•</span>
-      <a href="#about">Back to top</a>
+      <div>
+        <span>© <span id="y"></span> Adam Harith. All rights reserved.</span>
+      </div>
+      <div class="social-links">
+        <a href="https://github.com/adamF1123" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mohd-adam-bba8b0339" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:mohamadadamharith05@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </footer>
   </main>
 
   <script>
-    // tiny enhancement: current year
+    // Current year for footer
     document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Fade-in animation for elements
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards for animation
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Simple, not-advanced chart with sample data (responsive)
+    // Enhanced sales chart with more data points
     (function(){
-      var ctx = document.getElementById('salesChart');
+      const ctx = document.getElementById('salesChart');
       if(!ctx) return;
-      var chart = new Chart(ctx, {
+      
+      const chart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
           datasets: [{
-            label: 'Monthly Sales (RM)',
-            data: [320, 410, 380, 460, 520, 490]
+            label: 'Sales (RM)',
+            data: [3200, 4100, 3800, 4600, 5200, 4900, 5800, 6100],
+            backgroundColor: 'rgba(34, 197, 94, 0.7)',
+            borderColor: 'rgba(34, 197, 94, 1)',
+            borderWidth: 1,
+            borderRadius: 6
+          }, {
+            label: 'Orders',
+            data: [45, 52, 48, 61, 65, 58, 72, 78],
+            type: 'line',
+            borderColor: 'rgba(99, 102, 241, 1)',
+            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+            yAxisID: 'y1'
           }]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false, // lets chart fill the wrapper height on phones
-          plugins: { legend: { display: true } },
-          scales: { y: { beginAtZero: true } }
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Sales (RM)'
+              }
+            },
+            y1: {
+              position: 'right',
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Orders'
+              },
+              grid: {
+                drawOnChartArea: false
+              }
+            }
+          }
         }
       });
     })();
   </script>
 </body>
 </html>
-
